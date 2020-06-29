@@ -26,7 +26,7 @@ Example:
 Command:
 * a2d_image_processor.exe E:\a2d_root 1920x1080 TAIWAN TWN 201E0 PNG DAY MULTI_ARROWS LINK
 
-command with MDPS link listing from HERE Routing API:
+Command with MDPS link listing from HERE Routing API:
 * a2d_image_processor.exe E:\a2d_root 1920x1080 AUSTRALIA AU 201E0 PNG DAY MULTI_ARROWS LINK abc123
 
 ![](https://i.imgur.com/BAyjsZO.jpg)
