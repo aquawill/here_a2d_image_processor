@@ -1,11 +1,13 @@
 import os
 import csv
 import sys
+import requests
+import json
 
 from PIL import Image
 
 if len(sys.argv) < 10:
-    print("usage: a2d_image_processor.exe [root directory] [resolution] [country] [iso_country_code] [dvn] ['PNG', 'JPG'] ['DAY', 'NIGHT'] ['ARROWS', 'MULTI_ARROWS'] ['LINK', 'LANE']")
+    print("usage: a2d_image_processor.exe [root directory] [resolution] [country] [iso_country_code] [dvn] ['PNG', 'JPG'] ['DAY', 'NIGHT'] ['ARROWS', 'MULTI_ARROWS'] ['LINK', 'LANE'] ['APIKEY' (optional)]")
     print("* [root directory] - root directory as SVG Toolbox used.")
     print("* [resolution] - 1920x1080 or 1080x1440")
     print("* [country] - country name of image folder")
@@ -15,12 +17,17 @@ if len(sys.argv) < 10:
     print("* ['DAY', 'NIGHT'] - mode JV image, day or night")
     print("* ['ARROWS', 'MULTI_ARROWS'] - same as file name of arrow images")
     print("* ['LINK', 'LANE'] - type of JV arrow id")
+    print("* ['APIKEY' (optional)] - API KEY of HERE Location Services")
     print("example:")
     print("* directory of arrow images: E:\\a2d_root\\OUTPUT\\A2DGJ\\1920x1080\\AUSTRALIA\\ARROWS")
     print("* directory of junction images: E:\\a2d_root\\OUTPUT\\A2DGJ\\1920x1080\\AUSTRALIA\\JUNCTIONS")
     print("* directory of background images: E:\\a2d_root\\OUTPUT\\A2DGJ\\1920x1080\\BACKGROUND")
     print("* path of JV LAT: E:\\a2d_root\\A2DGJ\\201E0_AU_A2DGJV_LAT.csv")
-    print('command:\n* a2d_image_processor.exe E:\\a2d_root 1920x1080 AUSTRALIA AU 201E0 PNG DAY MULTI_ARROWS LINK')
+    print("* your HERE apikey: abc123")
+    print('command:')
+    print('* a2d_image_processor.exe E:\\a2d_root 1920x1080 AUSTRALIA AU 201E0 PNG DAY MULTI_ARROWS LINK')
+    print('command with MDPS link listing from HERE Routing API:')
+    print('* a2d_image_processor.exe E:\\a2d_root 1920x1080 AUSTRALIA AU 201E0 PNG DAY MULTI_ARROWS LINK abc123')
 else:
     # root = 'E:\\a2d_root'
     # a2dgj_root = os.path.join(root, 'A2DGJ\\')
@@ -46,6 +53,8 @@ else:
     day_night = sys.argv[7]  # ['DAY', 'NIGHT']
     arrow_type = sys.argv[8]  # ['ARROWS', 'MULTI_ARROWS'].
     arrow_id_type = sys.argv[9]  # ['LINK', 'LANE']
+    if len(sys.argv) == 11:
+        apikey = sys.argv[10]
     a2dgj_lat_file = os.path.join(a2dgj_root, '{}_{}_A2DGJV_LAT.csv'.format(dvn, iso_code))
     output_merged_path = os.path.join(output_root, 'MERGED')
     backgrounds = os.path.join(output_root, products[0], resolution, 'BACKGROUND', 'COMBINED_REALISTIC')
@@ -80,14 +89,30 @@ else:
                 sign_image_separated_file_name = os.path.join(signs, '{}_{}_{}.png'.format(row['A2DGS_FILENAME'].split('.')[0], day_night, row['SIDE']))
                 o_link_id = row['ORIGINATING_LINK_ID']
                 d_link_id = row['DEST_LINK_ID']
+                link_list = []
                 tunnel = row['TUNNEL']
                 iso_country_code = row['ISO_COUNTRY_CODE']
                 dps = ''
                 if row['MDPS'] == 'Y':
                     dps = 'MDPS'
+                    if len(sys.argv) == 11:
+                        apikey = sys.argv[10]
+                        here_calculate_route_url = 'https://route.ls.hereapi.com/routing/7.2/calculateroute.json?mode=fastest;car&legAttributes=links&waypoint0=link!*{},0.5&waypoint1=link!*{},0.5&apiKey={}'.format(o_link_id, d_link_id, apikey)
+                        # print('GET: ' + here_calculate_route_url)
+                        t = requests.get(here_calculate_route_url).text
+                        j = json.loads(t)
+                        legs = j['response']['route'][0]['leg']
+                        i = 0
+                        for leg in legs:
+                            links = leg['link']
+                            for link in links:
+                                link_list.append(link['linkId'].replace('-', '').replace('+', ''))
+                    else:
+                        link_list = [row['ORIGINATING_LINK_ID'], row['DEST_LINK_ID']]
                 else:
                     dps = 'SDPS'
-                output_image_file = os.path.join(output_merged_path, country, day_night, 'JV_{}_{}_{}_{}_{}_{}_{}_{}.png'.format(iso_country_code, dps, o_link_id, d_link_id, row['SIDE'], day_night, arrow_type, arrow_name))
+                    link_list = [row['ORIGINATING_LINK_ID'], row['DEST_LINK_ID']]
+                output_image_file = os.path.join(output_merged_path, country, day_night, 'JV_{}_{}_{}_{}_{}_{}_{}.png'.format(iso_country_code, dps, '_'.join(link_list), row['SIDE'], day_night, arrow_type, arrow_name))
                 if not os.path.exists(output_image_file):
                     try:
                         j = Image.open(junction_image_file_name).convert("RGBA")
