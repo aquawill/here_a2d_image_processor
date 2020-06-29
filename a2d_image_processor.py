@@ -6,13 +6,25 @@ from PIL import Image
 
 if len(sys.argv) < 10:
     print("usage: a2d_image_processor.exe [root directory] [resolution] [country] [iso_country_code] [dvn] ['PNG', 'JPG'] ['DAY', 'NIGHT'] ['ARROWS', 'MULTI_ARROWS'] ['LINK', 'LANE']")
-    print('example: a2d_image_processor.exe E:\\a2d_root 1920x1080 AUSTRALIA AU 201E0 PNG DAY MULTI_ARROWS LINK')
+    print("* [root directory] - root directory as SVG Toolbox used.")
+    print("* [resolution] - 1920x1080 or 1080x1440")
+    print("* [country] - country name of image folder")
+    print("* [iso_country_code] - iso country code of A2DGJ LAT file")
+    print("* [dvn] - data version number of A2DGJ LAT file")
+    print("* ['PNG', 'JPG'] - output format")
+    print("* ['DAY', 'NIGHT'] - mode JV image, day or night")
+    print("* ['ARROWS', 'MULTI_ARROWS'] - same as file name of arrow images")
+    print("* ['LINK', 'LANE'] - type of JV arrow id")
+    print("example:")
+    print("* directory of arrow images: E:\\a2d_root\\OUTPUT\\A2DGJ\\1920x1080\\AUSTRALIA\\ARROWS")
+    print("* directory of junction images: E:\\a2d_root\\OUTPUT\\A2DGJ\\1920x1080\\AUSTRALIA\\JUNCTIONS")
+    print("* directory of background images: E:\\a2d_root\\OUTPUT\\A2DGJ\\1920x1080\\BACKGROUND")
+    print("* path of JV LAT: E:\\a2d_root\\A2DGJ\\201E0_AU_A2DGJV_LAT.csv")
+    print('command:\n* a2d_image_processor.exe E:\\a2d_root 1920x1080 AUSTRALIA AU 201E0 PNG DAY MULTI_ARROWS LINK')
 else:
     # root = 'E:\\a2d_root'
     # a2dgj_root = os.path.join(root, 'A2DGJ\\')
     # a2dgs_root = os.path.join(root, 'SIGN_PROFILE_1\\')
-    # output_root = os.path.join(root, 'jv_output')
-    # products = ['A2DGJ', 'A2DGS']
     # resolution = '1920x1080'
     # country = 'AUSTRALIA'
     # iso_code = 'AU'
