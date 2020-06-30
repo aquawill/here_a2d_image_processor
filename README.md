@@ -9,7 +9,7 @@ Usage: a2d_image_processor.exe [root directory] [resolution] [country] [iso_coun
 * [resolution] - 1920x1080 or 1080x1440
 * [country] - country name of image folder
 * [iso_country_code] - iso country code of A2DGJ LAT file
-* [dvn] - data version number of A2DGJ LAT file
+* [lat_file_name] - full name of A2DGJ LAT file
 * ['PNG', 'JPG'] - output format
 * ['DAY', 'NIGHT'] - mode JV image, day or night
 * ['ARROWS', 'MULTI_ARROWS'] - same as file name of arrow images
@@ -24,10 +24,10 @@ Example:
 * your HERE apikey: abc123
 
 Command:
-* a2d_image_processor.exe E:\a2d_root 1920x1080 TAIWAN TWN 201E0 PNG DAY MULTI_ARROWS LINK
+* a2d_image_processor.exe E:\a2d_root 1920x1080 AUSTRALIA AU 201E0_AU_A2DGJV_LAT.csv PNG DAY MULTI_ARROWS LINK
 
 Command with MDPS link listing from HERE Routing API:
-* a2d_image_processor.exe E:\a2d_root 1920x1080 AUSTRALIA AU 201E0 PNG DAY MULTI_ARROWS LINK abc123
+* a2d_image_processor.exe E:\a2d_root 1920x1080 AUSTRALIA AU 201E0_AU_A2DGJV_LAT.csv PNG DAY MULTI_ARROWS LINK abc123
 
 ![](https://i.imgur.com/BAyjsZO.jpg)
 
