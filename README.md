@@ -4,7 +4,7 @@
 
 This tool combines components/layers of HERE A2D Junction/Sign raster images produced by HERE SVG Toolbox to complete Junction image files.
 
-Usage: a2d_image_processor.exe [root directory] [resolution] [country] [iso_country_code] [dvn] ['PNG', 'JPG'] ['DAY', 'NIGHT'] ['ARROWS', 'MULTI_ARROWS'] ['LINK', 'LANE']
+Usage: a2d_image_processor.exe [root directory] [resolution] [country] [iso_country_code] [lat_file_name] ['PNG', 'JPG'] ['DAY', 'NIGHT'] ['ARROWS', 'MULTI_ARROWS'] ['LINK', 'LANE']
 * [root directory] - root directory as SVG Toolbox used.
 * [resolution] - 1920x1080 or 1080x1440
 * [country] - country name of image folder
