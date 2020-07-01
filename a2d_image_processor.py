@@ -60,9 +60,12 @@ else:
     if not os.path.exists(os.path.join(output_merged_path, country, day_night)):
         os.mkdir(os.path.join(output_merged_path, country, day_night))
     print('open: ' + a2dgj_lat_file)
+    report = open('{}_report.txt'.format(lat_file_name), mode='w', encoding='utf-8')
     with open(a2dgj_lat_file) as a2dgj_lat_csv:
         reader = csv.DictReader(a2dgj_lat_csv)
         for row in reader:
+            j_path = None
+            a_path = None
             if row['A2DGJ_FILENAME'] != '' or row['A2DGJ_FILENAME_2'] != '' or row['A2DGJ_FILENAME_3'] != '':
                 iso_country_code = row['ISO_COUNTRY_CODE']
                 if iso_country_code == iso_country_code_filter:
@@ -110,7 +113,7 @@ else:
                     output_image_file = os.path.join(output_merged_path, country, day_night, 'JV_{}_{}_{}_{}_{}_{}_{}.png'.format(iso_country_code, dps, '_'.join(link_list), row['SIDE'], day_night, arrow_type, arrow_name))
                     if not os.path.exists(output_image_file):
                         try:
-                            j_path = None
+
                             if os.path.exists(junction_image_file_name_level_1):
                                 j_path = junction_image_file_name_level_1
                             elif os.path.exists(junction_image_file_name_level_2):
@@ -118,7 +121,6 @@ else:
                             elif os.path.exists(junction_image_file_name_level_3):
                                 j_path = junction_image_file_name_level_3
                             j = Image.open(j_path).convert("RGBA")
-                            a_path = None
                             if os.path.exists(arrow_image_file_name_level_1):
                                 a_path = arrow_image_file_name_level_1
                             elif os.path.exists(arrow_image_file_name_level_2):
@@ -149,7 +151,9 @@ else:
                                 s = Image.open(sign_image_separated_file_name).convert("RGBA")
                                 result = Image.alpha_composite(result, s)
                             print('merged: ' + output_image_file)
+                            report.write('merged: {}\n'.format(output_image_file))
                             result.save(output_image_file, output_format)
                         except Exception as e:
-                            print(e)
+                            report.write('Failed: {}, Junction = {}, Arrow = {}\n'.format(row, j_path, a_path))
+                            print("Failed: {}, Junction = {}, Arrow = {}".format(row, j_path, a_path))
                             pass
