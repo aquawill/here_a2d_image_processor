@@ -2,7 +2,9 @@
 
 **It's not a replacement of HERE SVG Toolbox.**
 
-This tool combines components/layers of HERE A2D Junction/Sign raster images produced by HERE SVG Toolbox to complete Junction image files.
+This tool combines components/layers of HERE A2DGJ/A2DGS raster images produced by HERE SVG Toolbox to complete Junction image files.
+
+Note: A2DGJ images are mandatory and A2DGS images are optional, so if A2DGS image is not present in the output folder, only A2DGJ images will be processed.
 
 Usage: a2d_image_processor.exe [root directory] [resolution] [country] [iso_country_code] [lat_file_name] ['PNG', 'JPG'] ['DAY', 'NIGHT'] ['ARROWS', 'MULTI_ARROWS'] ['LINK', 'LANE']
 * [root directory] - root directory as SVG Toolbox used.
@@ -13,22 +15,28 @@ Usage: a2d_image_processor.exe [root directory] [resolution] [country] [iso_coun
 * ['PNG', 'JPG'] - output format
 * ['DAY', 'NIGHT'] - mode JV image, day or night
 * ['ARROWS', 'MULTI_ARROWS'] - same as file name of arrow images
-* ['LINK', 'LANE'] - type of JV arrow id
+* ['LINK', 'LANE'] - type of JV arrow id (same as output setting of SVG Toolbox)
 * ['APIKEY' (optional)] - API KEY of HERE Location Services
 
-Example:
-* directory of arrow images: E:\a2d_root\OUTPUT\A2DGJ\1920x1080\AUSTRALIA\ARROWS
-* directory of junction images: E:\a2d_root\OUTPUT\A2DGJ\1920x1080\AUSTRALIA\JUNCTIONS
-* directory of background images: E:\a2d_root\OUTPUT\A2DGJ\1920x1080\BACKGROUND
-* path of A2DGJ LAT: E:\a2d_root\A2DGJ\201E0_AU_A2DGJV_LAT.csv
-* iso country code of Australia that to be processed: AUS
-* your HERE apikey: abc123
+Example, A2DGJ of 201E0 Australia:
+* directory of arrow images: *E:\a2droot\OUTPUT\A2DGJ\1920x1080\AUSTRALIA\ARROWS*
+* directory of junction images: *E:\a2droot\OUTPUT\A2DGJ\1920x1080\AUSTRALIA\JUNCTIONS*
+* directory of sign images (optional): *E:\a2droot\OUTPUT\A2DGS\1920x1080\AUSTRALIA*
+* directory of background images: *E:\a2droot\OUTPUT\A2DGJ\1920x1080\BACKGROUND*
+* path of A2DGJ LAT: *E:\a2droot\A2DGJ\201E0AUA2DGJVLAT.csv*
+* country name of Australia that to be processed: *AUSTRALIA*
+* iso country code of Australia that to be processed: *AUS*
+* format of output image: *PNG*
+* color scheme of A2DGJ: *DAY*
+* file name of arrow images: *MULTIARROWS*
+* arrow type: *LINK* 
+* your HERE apikey: *abc123*
 
 Command:
-* a2d_image_processor.exe E:\a2d_root 1920x1080 AUSTRALIA AUS 201E0 PNG DAY MULTI_ARROWS LINK
+* *a2dimageprocessor.exe E:\a2droot 1920x1080 AUSTRALIA AUS 201E0 PNG DAY MULTIARROWS LINK*
 
 Command with MDPS link listing from HERE Routing API:
-* a2d_image_processor.exe E:\a2d_root 1920x1080 AUSTRALIA AUS 201E0 PNG DAY MULTI_ARROWS LINK abc123
+* *a2dimageprocessor.exe E:\a2droot 1920x1080 AUSTRALIA AUS 201E0 PNG DAY MULTIARROWS LINK abc123*
 
 ![](https://i.imgur.com/MsnXiwM.jpg)
 
@@ -38,14 +46,23 @@ Command with MDPS link listing from HERE Routing API:
 
 Processed Image: 
 
-SDPS: **JV_TWN_SDPS_1110093768_1084548699_R_DAY_MULTI_ARROWS_LINK2.png**
+SDPS A2DGJ + A2DGS:
+**JV_AUS_SDPS_1233710436_1235484381_R_DAY_MULTI_ARROWS_LINK2.png**
 
-![](https://i.imgur.com/s1IykI1.jpg)
+![](https://i.imgur.com/hhXh0Yg.jpg)
 
-MDPS: **JV_TWN_MDPS_791548740_873367940_R_NIGHT_MULTI_ARROWS_LINK3.png**
 
-![](https://i.imgur.com/TQuPm1C.jpg)
+SDPS A2DGJ + A2DGS:
+**JV_AUS_MDPS_1226444315_130686948_L_DAY_MULTI_ARROWS_LINK1.png**
 
-MDPS link listing: **JV_TWN_MDPS_1105405421_901972028_901972029_834184831_834184832_867764838_867764839_914323840_913910857_L_DAY_MULTI_ARROWS_LINK1.png**
+![](https://i.imgur.com/pDXJ4EP.jpg)
 
-![](https://i.imgur.com/3mt5qib.jpg)
+MDPS A2DGJ with link listing:
+**JV_AUS_MDPS_782330849_1464939107_1464939106_133438667_R_DAY_MULTI_ARROWS_LINK3.png**
+
+![](https://i.imgur.com/FRfTZnq.jpg)
+
+MDPS A2DGJ + A2DGS with link listing:
+**JV_AUS_MDPS_1209318725_802509065_802509064_782967165_M_DAY_MULTI_ARROWS_LINK2.png**
+
+![](https://i.imgur.com/ZcQrYor.jpg)
