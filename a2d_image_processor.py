@@ -66,14 +66,14 @@ else:
         for row in reader:
             j_path = None
             b_path = None
+            f_path = None
             a_path = None
             t_path = None
-            f_path = None
             s_path = None
             j = None
-            a = None
             b = None
             f = None
+            a = None
             t = None
             s = None
             if row['A2DGJ_FILENAME'] != '' or row['A2DGJ_FILENAME_2'] != '' or row['A2DGJ_FILENAME_3'] != '':
