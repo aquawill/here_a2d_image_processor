@@ -6,16 +6,16 @@ This tool combines components/layers of HERE A2DGJ/A2DGS raster images produced 
 
 Note: A2DGJ images are mandatory and A2DGS images are optional, so if A2DGS image is not present in the output folder, only A2DGJ images will be processed.
 
-Usage: a2d_image_processor.exe [root_directory] [resolution] [country] [iso_country_code] [lat_file_name] ['PNG', 'JPG'] ['DAY', 'NIGHT'] ['ARROWS', 'MULTI_ARROWS'] ['LINK', 'LANE']
+Usage: a2d_image_processor.exe [root_directory] [resolution] [country] [iso_country_code] [lat_file_name] ['PNG', 'JPEG'] ['DAY', 'NIGHT'] ['ARROWS', 'MULTI_ARROWS'] ['LINK', 'LANE', 'LANE_GROUP']
 * [root_directory] - root directory as SVG Toolbox used.
 * [resolution] - 1920x1080 or 1080x1440
 * [country] - country name of image folder
 * [iso_country_code] - 3-digit iso country code to be processed in A2DGJ LAT
 * [lat_file_name] - full name of A2DGJ LAT file
-* ['PNG', 'JPG'] - output format
+* ['PNG', 'JPEG'] - output format
 * ['DAY', 'NIGHT'] - mode JV image, day or night
 * ['ARROWS', 'MULTI_ARROWS'] - same as file name of arrow images
-* ['LINK', 'LANE'] - type of JV arrow id (same as output setting of SVG Toolbox)
+* ['LINK', 'LANE', 'LANE_GROUP'] - type of JV arrow id (same as output setting of SVG Toolbox)
 * ['APIKEY' (optional)] - API KEY of HERE Location Services
 
 Example, A2DGJ of 201E0 Australia:
