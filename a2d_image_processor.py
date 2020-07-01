@@ -113,7 +113,6 @@ else:
                             j_path = None
                             if os.path.exists(junction_image_file_name_level_1):
                                 j_path = junction_image_file_name_level_1
-
                             elif os.path.exists(junction_image_file_name_level_2):
                                 j_path = junction_image_file_name_level_2
                             elif os.path.exists(junction_image_file_name_level_3):
