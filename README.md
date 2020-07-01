@@ -6,8 +6,8 @@ This tool combines components/layers of HERE A2DGJ/A2DGS raster images produced 
 
 Note: A2DGJ images are mandatory and A2DGS images are optional, so if A2DGS image is not present in the output folder, only A2DGJ images will be processed.
 
-Usage: a2d_image_processor.exe [root directory] [resolution] [country] [iso_country_code] [lat_file_name] ['PNG', 'JPG'] ['DAY', 'NIGHT'] ['ARROWS', 'MULTI_ARROWS'] ['LINK', 'LANE']
-* [root directory] - root directory as SVG Toolbox used.
+Usage: a2d_image_processor.exe [root_directory] [resolution] [country] [iso_country_code] [lat_file_name] ['PNG', 'JPG'] ['DAY', 'NIGHT'] ['ARROWS', 'MULTI_ARROWS'] ['LINK', 'LANE']
+* [root_directory] - root directory as SVG Toolbox used.
 * [resolution] - 1920x1080 or 1080x1440
 * [country] - country name of image folder
 * [iso_country_code] - 3-digit iso country code to be processed in A2DGJ LAT
@@ -19,24 +19,24 @@ Usage: a2d_image_processor.exe [root directory] [resolution] [country] [iso_coun
 * ['APIKEY' (optional)] - API KEY of HERE Location Services
 
 Example, A2DGJ of 201E0 Australia:
-* directory of arrow images: *E:\a2droot\OUTPUT\A2DGJ\1920x1080\AUSTRALIA\ARROWS*
-* directory of junction images: *E:\a2droot\OUTPUT\A2DGJ\1920x1080\AUSTRALIA\JUNCTIONS*
-* directory of sign images (optional): *E:\a2droot\OUTPUT\A2DGS\1920x1080\AUSTRALIA*
-* directory of background images: *E:\a2droot\OUTPUT\A2DGJ\1920x1080\BACKGROUND*
-* path of A2DGJ LAT: *E:\a2droot\A2DGJ\201E0AUA2DGJVLAT.csv*
+* directory of arrow images: *E:\a2d_root\OUTPUT\A2DGJ\1920x1080\AUSTRALIA\ARROWS*
+* directory of junction images: *E:\a2d_root\OUTPUT\A2DGJ\1920x1080\AUSTRALIA\JUNCTIONS*
+* directory of sign images (optional): *E:\a2d_root\OUTPUT\A2DGS\1920x1080\AUSTRALIA*
+* directory of background images: *E:\a2d_root\OUTPUT\A2DGJ\1920x1080\BACKGROUND*
+* path of A2DGJ LAT: *E:\a2d_root\A2DGJ\201E0_AU_A2DGJV_LAT.csv*
 * country name of Australia that to be processed: *AUSTRALIA*
 * iso country code of Australia that to be processed: *AUS*
 * format of output image: *PNG*
 * color scheme of A2DGJ: *DAY*
-* file name of arrow images: *MULTIARROWS*
+* file name of arrow images: *MULTI_ARROWS*
 * arrow type: *LINK* 
 * your HERE apikey: *abc123*
 
 Command:
-* *a2dimageprocessor.exe E:\a2droot 1920x1080 AUSTRALIA AUS 201E0 PNG DAY MULTIARROWS LINK*
+* *a2d_image_processor.exe E:\a2d_root 1920x1080 AUSTRALIA AUS 201E0_AU_A2DGJV_LAT.csv PNG DAY MULTI_ARROWS LINK*
 
 Command with MDPS link listing from HERE Routing API:
-* *a2dimageprocessor.exe E:\a2droot 1920x1080 AUSTRALIA AUS 201E0 PNG DAY MULTIARROWS LINK abc123*
+* *a2d_image_processor.exe E:\a2d_root 1920x1080 AUSTRALIA AUS 201E0_AU_A2DGJV_LAT.csv PNG DAY MULTI_ARROWS LINK abc123*
 
 ![](https://i.imgur.com/MsnXiwM.jpg)
 
