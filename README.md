@@ -4,12 +4,12 @@
 
 This tool combines components/layers of HERE A2D Junction/Sign raster images produced by HERE SVG Toolbox to complete Junction image files.
 
-Usage: a2d_image_processor.exe [root directory] [resolution] [country] [iso_country_code] [dvn] ['PNG', 'JPG'] ['DAY', 'NIGHT'] ['ARROWS', 'MULTI_ARROWS'] ['LINK', 'LANE']
+Usage: a2d_image_processor.exe [root directory] [resolution] [country] [iso_country_code] [lat_file_name] ['PNG', 'JPG'] ['DAY', 'NIGHT'] ['ARROWS', 'MULTI_ARROWS'] ['LINK', 'LANE']
 * [root directory] - root directory as SVG Toolbox used.
 * [resolution] - 1920x1080 or 1080x1440
 * [country] - country name of image folder
-* [iso_country_code] - iso country code of A2DGJ LAT file
-* [dvn] - data version number of A2DGJ LAT file
+* [iso_country_code] - 3-digit iso country code to be processed in A2DGJ LAT
+* [lat_file_name] - full name of A2DGJ LAT file
 * ['PNG', 'JPG'] - output format
 * ['DAY', 'NIGHT'] - mode JV image, day or night
 * ['ARROWS', 'MULTI_ARROWS'] - same as file name of arrow images
@@ -21,6 +21,7 @@ Example:
 * directory of junction images: E:\a2d_root\OUTPUT\A2DGJ\1920x1080\AUSTRALIA\JUNCTIONS
 * directory of background images: E:\a2d_root\OUTPUT\A2DGJ\1920x1080\BACKGROUND
 * path of A2DGJ LAT: E:\a2d_root\A2DGJ\201E0_AU_A2DGJV_LAT.csv
+* iso country code of Australia that to be processed: AUS
 * your HERE apikey: abc123
 
 Command:
