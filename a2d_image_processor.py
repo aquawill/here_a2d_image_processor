@@ -46,7 +46,13 @@ else:
         apikey = sys.argv[10]
     a2dgj_lat_file = os.path.join(a2dgj_root, lat_file_name)
     output_merged_path = os.path.join(output_root, 'MERGED')
-    backgrounds = os.path.join(output_root, products[0], resolution, 'BACKGROUND', 'COMBINED_REALISTIC')
+    background = None
+    realistic_background_path = os.path.join(output_root, products[0], resolution, 'BACKGROUND', 'COMBINED_REALISTIC')
+    futuristic_background_path = os.path.join(output_root, products[0], resolution, 'BACKGROUND', 'COMBINED_FUTURISTIC')
+    if os.path.exists(realistic_background_path):
+        background = realistic_background_path
+    elif os.path.exists(futuristic_background_path):
+        backgrounds = futuristic_background_path
     fogs = os.path.join(output_root, products[0], resolution, 'BACKGROUND', 'FOG')
     junctions = os.path.join(output_root, products[0], resolution, country, 'JUNCTIONS')
     arrows = os.path.join(output_root, products[0], resolution, country, 'ARROWS')
@@ -183,5 +189,5 @@ else:
                             report.write('merged: {}\n'.format(output_image_file))
                         except Exception as e:
                             report.write('Failed: {}, Junction = {}, Arrow = {}, Background = {}, Fog = {}, Tree = {}, Sign = {}\n'.format(row, j_path, a_path, b_path, f_path, t_path, s_path))
-                            print("Failed: {}, Junction = {}, Arrow = {}".format(row, j_path, a_path))
+                            print('Failed: {}, Junction = {}, Arrow = {}, Background = {}, Fog = {}, Tree = {}, Sign = {}\n'.format(row, j_path, a_path, b_path, f_path, t_path, s_path))
                             pass
