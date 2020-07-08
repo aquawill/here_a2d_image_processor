@@ -46,11 +46,11 @@ else:
         apikey = sys.argv[10]
     a2dgj_lat_file = os.path.join(a2dgj_root, lat_file_name)
     output_merged_path = os.path.join(output_root, 'MERGED')
-    background = None
+    backgrounds = None
     realistic_background_path = os.path.join(output_root, products[0], resolution, 'BACKGROUND', 'COMBINED_REALISTIC')
     futuristic_background_path = os.path.join(output_root, products[0], resolution, 'BACKGROUND', 'COMBINED_FUTURISTIC')
     if os.path.exists(realistic_background_path):
-        background = realistic_background_path
+        backgrounds = realistic_background_path
     elif os.path.exists(futuristic_background_path):
         backgrounds = futuristic_background_path
     fogs = os.path.join(output_root, products[0], resolution, 'BACKGROUND', 'FOG')
